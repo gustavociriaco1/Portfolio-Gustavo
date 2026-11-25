@@ -198,43 +198,147 @@ a {
   border-color: #6366f1;
 }
 
-/* Área da Foto */
+/* Cursor piscando no subtítulo */
+.cursor {
+  display: inline-block;
+  margin-left: 4px;
+  color: #818cf8;
+  animation: piscar 1s steps(2, start) infinite;
+}
+
+@keyframes piscar {
+  to {
+    opacity: 0;
+  }
+}
+
+/* Brilho sutil no botão principal */
+.btn-primario {
+  background: var(--gradiente);
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.35);
+}
+
+.btn-primario:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(99, 102, 241, 0.5);
+}
+
+/* Área da Foto (sem o quadrado duro) */
 .inicio-foto-wrapper {
   position: relative;
   display: flex;
   justify-content: center;
-  align-items: center;
-  min-height: 380px;
-  border-radius: 24px;
-  background: radial-gradient(
-    circle at center,
-    rgba(99, 102, 241, 0.28),
-    transparent 68%
-  );
-  border: 1px solid var(--borda);
+  align-items: flex-end;
+  min-height: 430px;
+  border-radius: 28px;
   overflow: hidden;
+  /* Borda super sutil com degradê que desaparece para baixo */
+  background: linear-gradient(
+    180deg,
+    rgba(99, 102, 241, 0.08) 0%,
+    rgba(15, 22, 36, 0.35) 60%,
+    transparent 100%
+  );
+  border: 1px solid rgba(99, 102, 241, 0.18);
 }
 
-.inicio-foto-wrapper img {
-  max-width: 90%;
+/* Aura roxa/azul suave atrás da foto */
+.foto-aura {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -45%);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(99, 102, 241, 0.55) 0%,
+    rgba(59, 130, 246, 0.25) 45%,
+    transparent 72%
+  );
+  filter: blur(28px);
+  z-index: 0;
+  animation: pulsar-aura 6s ease-in-out infinite alternate;
+}
+
+/* Grade de pontinhos sutis estilo tech */
+.foto-dots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    rgba(148, 163, 184, 0.16) 1px,
+    transparent 1px
+  );
+  background-size: 20px 20px;
+  -webkit-mask-image: radial-gradient(
+    circle at center,
+    black 35%,
+    transparent 78%
+  );
+  mask-image: radial-gradient(circle at center, black 35%, transparent 78%);
+  z-index: 0;
+}
+
+/* Foto recortada com sombra e fusão suave na base */
+.foto-perfil {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 390px;
   height: auto;
   object-fit: contain;
+  filter: drop-shadow(0 16px 32px rgba(0, 0, 0, 0.55));
+  -webkit-mask-image: linear-gradient(to bottom, black 82%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 82%, transparent 100%);
+  transition: transform 0.35s ease;
 }
 
+.inicio-foto-wrapper:hover .foto-perfil {
+  transform: scale(1.02);
+}
+
+/* Ícone </> flutuando suavemente */
 .icone-flutuante {
   position: absolute;
-  top: 24px;
-  right: 24px;
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  background: rgba(59, 130, 246, 0.15);
-  border: 1px solid rgba(59, 130, 246, 0.35);
+  top: 28px;
+  right: 28px;
+  z-index: 2;
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  background: rgba(15, 22, 36, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(99, 102, 241, 0.45);
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
   color: #60a5fa;
   font-size: 1.25rem;
+  animation: flutuar 4s ease-in-out infinite;
+}
+
+@keyframes flutuar {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes pulsar-aura {
+  0% {
+    opacity: 0.75;
+    transform: translate(-50%, -45%) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -45%) scale(1.06);
+  }
 }
 
 @media (max-width: 860px) {
@@ -252,6 +356,7 @@ a {
 /* Seções e Blocos */
 .secao {
   padding: 24px 0;
+  scroll-margin-top: 90px;
 }
 
 .bloco-card {
@@ -338,7 +443,7 @@ a {
 /* Projetos */
 .projetos-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
   gap: 20px;
 }
 
@@ -438,60 +543,79 @@ a {
     padding: 24px;
   }
 }
-/* Skills */
-.skills-grid {
+/* Serviços / O que eu desenvolvo */
+.servicos-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px 32px;
+  gap: 20px;
 }
 
-.skill-item {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.skill-icone {
-  width: 44px;
-  height: 44px;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.03);
+.servico-card {
+  background: rgba(7, 11, 20, 0.65);
   border: 1px solid var(--borda);
+  border-radius: 14px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  transition:
+    transform 0.2s,
+    border-color 0.2s;
+}
+
+.servico-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(99, 102, 241, 0.45);
+}
+
+.servico-icone {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: rgba(99, 102, 241, 0.12);
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  color: #818cf8;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
+  margin-bottom: 18px;
 }
 
-.skill-info {
-  flex: 1;
+.servico-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
 }
 
-.skill-topo {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.9rem;
-  font-weight: 600;
-  margin-bottom: 8px;
-}
-
-.skill-porcentagem {
+.servico-desc {
   color: var(--texto-secundario);
-  font-weight: 500;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  margin-bottom: 18px;
 }
 
-.skill-trilha {
-  width: 100%;
-  height: 8px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
-  overflow: hidden;
+.servico-lista {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid var(--borda);
 }
 
-.skill-progresso {
-  height: 100%;
-  border-radius: 999px;
-  background: var(--gradiente);
+.servico-lista li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.84rem;
+  color: var(--texto-secundario);
+  line-height: 1.4;
+}
+
+.servico-check {
+  color: #60a5fa;
+  font-size: 0.75rem;
+  margin-top: 4px;
+  flex-shrink: 0;
 }
 
 /* Contato */
@@ -501,17 +625,51 @@ a {
   gap: 24px;
 }
 
+.contato-grid .titulo-secao {
+  margin-bottom: 0;
+}
+
 .contato-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
 }
 
+.contato-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px;
+  border-radius: 12px;
+  background: rgba(7, 11, 20, 0.65);
+  border: 1px solid var(--borda);
+  transition:
+    transform 0.2s,
+    border-color 0.2s;
+}
+
+.contato-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(99, 102, 241, 0.5);
+}
+
+.contato-card strong {
+  display: block;
+  font-size: 0.95rem;
+  margin-bottom: 2px;
+}
+
 .contato-card span {
   display: block;
-  font-size: 0.85rem;
+  font-size: 0.84rem;
   color: var(--texto-secundario);
-  word-break: normal;
+}
+
+@media (max-width: 960px) {
+  .servicos-grid,
+  .contato-cards {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Footer */
@@ -562,5 +720,53 @@ a {
 @media (max-width: 600px) {
   .skills-grid {
     grid-template-columns: 1fr;
+  }
+}
+/* Evita que filhos de Grid/Flex estiquem além do container */
+.sobre-grid > *,
+.contato-card,
+.contato-card > div,
+.card-projeto,
+.tech-card {
+  min-width: 0;
+}
+
+/* Ajustes finos para celulares pequenos (320px a 480px) */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 16px;
+  }
+
+  .bloco-card {
+    padding: 20px 16px;
+    border-radius: 16px;
+  }
+
+  .inicio {
+    padding: 40px 0;
+  }
+
+  .inicio-texto h1 {
+    font-size: 2.35rem;
+  }
+
+  /* 2 colunas em vez de 3: não vaza e alinha os 10 ícones em 5x2 sem sobrar o Vite */
+  .tech-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .contato-card {
+    padding: 14px;
+    gap: 12px;
+  }
+
+  .contato-card span {
+    font-size: 0.78rem;
+    overflow-wrap: anywhere;
+  }
+
+  .footer-conteudo {
+    gap: 12px;
   }
 }

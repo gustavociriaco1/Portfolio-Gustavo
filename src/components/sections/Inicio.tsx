@@ -6,7 +6,7 @@ import {
   FaEnvelope,
   FaCode,
 } from "react-icons/fa";
-import fotoPerfil from "../../assets/foto.png";
+import fotoPerfil from "../../assets/foto-sem-fundo.png";
 
 export function Inicio() {
   return (
@@ -28,17 +28,17 @@ export function Inicio() {
           </p>
 
           <div className="acoes">
-            <a href="#projetos" className="btn-primario">
+            <a href="projetos" className="btn-primario">
               Ver Projetos <FaArrowRight />
             </a>
-            <a href="#contato" className="btn-secundario">
+            <a href="contato" className="btn-secundario">
               Entrar em Contato <FaPaperPlane />
             </a>
           </div>
 
           <div className="redes">
             <a
-              href="https://github.com/"
+              href="https://github.com/gustavociriaco1"
               target="_blank"
               rel="noreferrer"
               aria-label="GitHub"
@@ -53,19 +53,24 @@ export function Inicio() {
             >
               <FaLinkedin />
             </a>
-            <a href="mailto:seuemail@exemplo.com" aria-label="E-mail">
+            <a href="mailto:gustavociriaco5@hotmail.com" aria-label="E-mail">
               <FaEnvelope />
             </a>
           </div>
         </div>
 
         <div className="inicio-foto-wrapper">
+          <div className="foto-aura" />
+          <div className="foto-dots" />
+
           <div className="icone-flutuante">
             <FaCode />
           </div>
+
           <img
             src={fotoPerfil}
             alt="Gustavo Ciriaco - Desenvolvedor Full Stack"
+            className="foto-perfil"
             loading="eager"
           />
         </div>

@@ -15,9 +15,10 @@ export interface Projeto {
   githubUrl?: string;
   deployUrl?: string;
 }
-export interface Skill {
-  nome: string;
-  nivel: number;
+
+export interface Servico {
+  titulo: string;
+  descricao: string;
+  entregas: string[];
   icone: IconType;
-  cor: string;
 }

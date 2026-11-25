@@ -11,15 +11,15 @@ export function Sobre() {
             <TituloSecao icone={FaUser} titulo="Sobre mim" />
 
             <p className="sobre-texto">
-              Sou desenvolvedor Full Stack com foco em criar aplicações web
-              modernas, responsivas e bem estruturadas. Tenho experiência
-              prática em projetos reais utilizando React, TypeScript, Material
-              UI, Python e bancos relacionais.
+              Sou desenvolvedor Full Stack com experiência prática em projetos
+              comerciais e 1 ano de atuação em equipe ágil na 20DASH,
+              desenvolvendo e mantendo aplicações web para clientes reais.
             </p>
             <p className="sobre-texto">
-              Gosto de cuidar do projeto de ponta a ponta — da organização do
-              código e interface até a integração com APIs e publicação em
-              produção.
+              Trabalho com React, TypeScript, Material UI, Python e bancos de
+              dados relacionais, cuidando do projeto de ponta a ponta — da
+              interface responsiva e integração de APIs até a configuração de
+              domínio, deploy e colocação no ar.
             </p>
           </div>
 
